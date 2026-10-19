@@ -1,7 +1,9 @@
 package com.pizinho;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class App {
     public static void main(String[] args) {
@@ -47,6 +49,29 @@ public class App {
 
         System.out.println(lisMochila.toString());
 
-    }
+        List<Material> lispapel = materiais.stream()
+                .filter(m -> m.getSetor() == Setor.PAPELARIA)
+                .filter(m -> m.getPrecoUnitario() >50).toList();
 
+        System.out.println(lisMochila.toString());
+
+        List<Material> lisDe = materiais.stream()
+                .filter(m -> m.getSetor() == Setor.DESENHO).toList();
+
+        System.out.println(lisDe.toString());
+
+
+        double media = materiais.stream()
+                .filter(m -> m.getSetor() ==Setor.DESENHO)
+                .mapToDouble(m -> m.getPrecoUnitario())
+                .average()
+                .getAsDouble();
+         System.out.println(media);
+
+        materiais.stream()
+                .filter(m -> m.getSetor()==Setor.PAPELARIA)
+                .map(m -> m.getDescricao() +" R$ "+ m.getPrecoUnitario())
+                .forEach(System.out::println);
+
+}
 }
