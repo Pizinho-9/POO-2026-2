@@ -1,16 +1,26 @@
 package com.pizinho;
 
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.theme.lumo.LumoUtility;
 
+
 @Route("")
 public class MainView extends VerticalLayout {
+    private Grid<Livro> gridLivros;
+
 
     public MainView() {
+        gridLivros = new Grid<>();
+        gridLivros.addColumn(livro->livro.titulo()).setHeader("Titulo").setAutoWidth(true).setSortable(true);
+        gridLivros.addColumn(livro->livro.autor()).setHeader("Autor").setAutoWidth(true).setSortable(true);
+        gridLivros.setItems(Biblioteca.getInstance().livros());
+        gridLivros.setWidth("600px");
+
         setSizeFull();
         setAlignItems(Alignment.CENTER);
         setJustifyContentMode(JustifyContentMode.CENTER);
