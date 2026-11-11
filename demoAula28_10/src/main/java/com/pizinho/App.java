@@ -2,9 +2,12 @@ package com.pizinho;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import com.vaadin.flow.component.dependency.StyleSheet;
+import com.vaadin.flow.component.page.AppShellConfigurator;
 
 @SpringBootApplication
-public class App {
+@StyleSheet("styles.css")
+public class App implements AppShellConfigurator {
 
     public static void main(String[] args) {
         SpringApplication.run(App.class, args);
